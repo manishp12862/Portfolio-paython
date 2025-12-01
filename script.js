@@ -100,23 +100,42 @@ window.addEventListener('load', () => {
   updateNavbarOnScroll();
 });
 
-// Intersection Observer for animations
+// Enhanced Intersection Observer for smooth animations
 const observerOptions = {
   threshold: 0.1,
-  rootMargin: '0px 0px -50px 0px'
+  rootMargin: '0px 0px -100px 0px'
 };
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach(entry => {
     if (entry.isIntersecting) {
-      entry.target.classList.add('fade-in-up');
+      entry.target.classList.add('animate');
+      observer.unobserve(entry.target);
     }
   });
 }, observerOptions);
 
-// Observe elements for animation
-document.querySelectorAll('.project-card, .skill-category, .timeline-item, .stat, .contact-item').forEach(el => {
+// Observe elements for animation with staggered delay
+document.querySelectorAll('.project-card, .skill-category, .timeline-item, .stat, .contact-item').forEach((el, index) => {
+  el.style.transitionDelay = `${index * 0.1}s`;
   observer.observe(el);
+});
+
+// Staggered animation for skill tags
+const skillTags = document.querySelectorAll('.skill-tag');
+const skillObserver = new IntersectionObserver((entries) => {
+  entries.forEach((entry, index) => {
+    if (entry.isIntersecting) {
+      setTimeout(() => {
+        entry.target.classList.add('animate');
+      }, index * 50);
+      skillObserver.unobserve(entry.target);
+    }
+  });
+}, { threshold: 0.2 });
+
+skillTags.forEach(tag => {
+  skillObserver.observe(tag);
 });
 
 // Contact form handling
@@ -193,30 +212,7 @@ function showNotification(message, type = 'info') {
   }, 3000);
 }
 
-// Typing animation for hero title
-function typeWriter(element, text, speed = 100) {
-  let i = 0;
-  element.innerHTML = '';
-  
-  function type() {
-    if (i < text.length) {
-      element.innerHTML += text.charAt(i);
-      i++;
-      setTimeout(type, speed);
-    }
-  }
-  
-  type();
-}
-
-// Initialize typing animation when page loads
-window.addEventListener('load', () => {
-  const heroTitle = document.querySelector('.hero-title');
-  if (heroTitle) {
-    const originalText = heroTitle.innerHTML;
-    typeWriter(heroTitle, originalText, 50);
-  }
-});
+// Typing animation removed - using CSS animations instead for hero title
 
 // Parallax effect for hero section
 window.addEventListener('scroll', () => {
@@ -230,36 +226,56 @@ window.addEventListener('scroll', () => {
   }
 });
 
-// Skills animation on scroll
-const skillTags = document.querySelectorAll('.skill-tag');
-const skillObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry, index) => {
-    if (entry.isIntersecting) {
-      setTimeout(() => {
-        entry.target.style.transform = 'translateY(0)';
-        entry.target.style.opacity = '1';
-      }, index * 100);
-    }
-  });
-}, { threshold: 0.5 });
-
-skillTags.forEach(tag => {
-  tag.style.transform = 'translateY(20px)';
-  tag.style.opacity = '0';
-  tag.style.transition = 'all 0.3s ease';
-  skillObserver.observe(tag);
-});
-
-// Project cards hover effect
+// Enhanced project cards with 3D tilt effect
 document.querySelectorAll('.project-card').forEach(card => {
-  card.addEventListener('mouseenter', function() {
-    this.style.transform = 'translateY(-10px) scale(1.02)';
+  card.addEventListener('mousemove', function(e) {
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    const rotateX = (y - centerY) / 10;
+    const rotateY = (centerX - x) / 10;
+    
+    this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px) scale(1.02)`;
   });
   
   card.addEventListener('mouseleave', function() {
-    this.style.transform = 'translateY(0) scale(1)';
+    this.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) translateY(0) scale(1)';
   });
 });
+
+// Smooth scroll with easing
+function smoothScrollTo(target) {
+  const element = document.querySelector(target);
+  if (!element) return;
+  
+  const navbar = document.querySelector('.navbar');
+  const navbarHeight = navbar ? navbar.offsetHeight : 70;
+  const targetPosition = element.offsetTop - navbarHeight;
+  
+  window.scrollTo({
+    top: targetPosition,
+    behavior: 'smooth'
+  });
+}
+
+// Enhanced scroll animations
+let lastScrollTop = 0;
+window.addEventListener('scroll', () => {
+  const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+  
+  // Parallax effect for hero image
+  const heroImage = document.querySelector('.hero-image img');
+  if (heroImage && scrollTop < window.innerHeight) {
+    const rate = scrollTop * -0.5;
+    heroImage.style.transform = `translateY(${rate}px) scale(1)`;
+  }
+  
+  lastScrollTop = scrollTop;
+}, { passive: true });
 
 // Counter animation for stats
 function animateCounter(element, target, duration = 2000) {
@@ -315,3 +331,145 @@ const loadingStyles = `
 const styleSheet = document.createElement('style');
 styleSheet.textContent = loadingStyles;
 document.head.appendChild(styleSheet);
+
+// Three.js 3D Scene
+window.addEventListener('load', function initThreeJS() {
+  const canvas = document.getElementById('three-canvas');
+  if (!canvas || !window.THREE) {
+    // Retry if Three.js hasn't loaded yet
+    setTimeout(initThreeJS, 100);
+    return;
+  }
+
+  // Scene setup
+  const scene = new THREE.Scene();
+  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+  const renderer = new THREE.WebGLRenderer({ canvas: canvas, alpha: true, antialias: true });
+  
+  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
+
+  // Create floating geometric shapes
+  const geometries = [];
+  const materials = [];
+  const meshes = [];
+  
+  // Create multiple 3D objects
+  for (let i = 0; i < 20; i++) {
+    let geometry;
+    const rand = Math.random();
+    
+    if (rand < 0.33) {
+      geometry = new THREE.BoxGeometry(0.5, 0.5, 0.5);
+    } else if (rand < 0.66) {
+      geometry = new THREE.OctahedronGeometry(0.4);
+    } else {
+      geometry = new THREE.TetrahedronGeometry(0.4);
+    }
+    
+    const material = new THREE.MeshStandardMaterial({
+      color: new THREE.Color().setHSL(Math.random(), 0.7, 0.6),
+      metalness: 0.3,
+      roughness: 0.4,
+      transparent: true,
+      opacity: 0.6
+    });
+    
+    const mesh = new THREE.Mesh(geometry, material);
+    
+    // Random position
+    mesh.position.set(
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20,
+      (Math.random() - 0.5) * 20
+    );
+    
+    // Random rotation speed
+    mesh.userData = {
+      rotationSpeed: {
+        x: (Math.random() - 0.5) * 0.02,
+        y: (Math.random() - 0.5) * 0.02,
+        z: (Math.random() - 0.5) * 0.02
+      },
+      floatSpeed: Math.random() * 0.01 + 0.005,
+      floatAmplitude: Math.random() * 2 + 1,
+      initialY: mesh.position.y
+    };
+    
+    scene.add(mesh);
+    meshes.push(mesh);
+  }
+
+  // Add ambient light
+  const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+  scene.add(ambientLight);
+
+  // Add directional lights
+  const light1 = new THREE.DirectionalLight(0xffffff, 0.8);
+  light1.position.set(5, 5, 5);
+  scene.add(light1);
+
+  const light2 = new THREE.DirectionalLight(0xffffff, 0.5);
+  light2.position.set(-5, -5, -5);
+  scene.add(light2);
+
+  // Camera position
+  camera.position.z = 5;
+
+  // Mouse interaction
+  let mouseX = 0;
+  let mouseY = 0;
+  
+  document.addEventListener('mousemove', (event) => {
+    mouseX = (event.clientX / window.innerWidth) * 2 - 1;
+    mouseY = -(event.clientY / window.innerHeight) * 2 + 1;
+  });
+
+  // Animation loop
+  let time = 0;
+  function animate() {
+    requestAnimationFrame(animate);
+    time += 0.01;
+
+    // Rotate camera based on mouse
+    camera.position.x += (mouseX * 2 - camera.position.x) * 0.05;
+    camera.position.y += (mouseY * 2 - camera.position.y) * 0.05;
+    camera.lookAt(scene.position);
+
+    // Animate meshes
+    meshes.forEach((mesh, index) => {
+      // Rotation
+      mesh.rotation.x += mesh.userData.rotationSpeed.x;
+      mesh.rotation.y += mesh.userData.rotationSpeed.y;
+      mesh.rotation.z += mesh.userData.rotationSpeed.z;
+
+      // Floating animation
+      mesh.position.y = mesh.userData.initialY + Math.sin(time * mesh.userData.floatSpeed + index) * mesh.userData.floatAmplitude;
+      
+      // Gentle movement
+      mesh.position.x += Math.sin(time * 0.5 + index) * 0.001;
+      mesh.position.z += Math.cos(time * 0.5 + index) * 0.001;
+    });
+
+    renderer.render(scene, camera);
+  }
+
+  // Handle window resize
+  function handleResize() {
+    const heroSection = document.querySelector('.hero');
+    if (heroSection) {
+      const rect = heroSection.getBoundingClientRect();
+      camera.aspect = rect.width / rect.height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(rect.width, rect.height);
+    }
+  }
+
+  window.addEventListener('resize', handleResize);
+  
+  // Initial resize
+  handleResize();
+
+  // Start animation
+  animate();
+});

@@ -6,6 +6,7 @@
   <title>Manish Patil - Mobile Developer</title>
   <link rel="stylesheet" href="styles.css">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 </head>
 <body class="dark-mode">
   <!-- Navigation -->
@@ -60,15 +61,21 @@
 
   <!-- Hero Section -->
   <section id="home" class="hero">
+    <canvas id="three-canvas"></canvas>
     <div class="hero-container">
       <div class="hero-content">
         <div class="hero-text">
+          <div class="hero-greeting">Welcome</div>
           <h1 class="hero-title">
-            Hi, I'm Manish Patil
+            <span class="title-line">Hi! I'm</span>
+            <span class="title-line highlight">Manish Patil</span>
           </h1>
-          <h2 class="hero-subtitle">Mobile Developer & React Native Specialist</h2>
+          <h2 class="hero-subtitle">
+            <span class="subtitle-line">Mobile Developer &</span>
+            <span class="subtitle-line">React Native Specialist</span>
+          </h2>
           <p class="hero-description">
-            A dedicated React Native Developer focused on building high-quality, full-featured mobile applications for both Android and iOS. I specialize in creating robust and maintainable code using TypeScript.
+            A dedicated React Native developer focused on building high-quality, full-featured mobile applications for both Android and iOS. I specialize in creating robust and maintainable code using TypeScript.
           </p>
           <div class="hero-buttons">
             <a href="#contact" class="btn btn-primary">Get In Touch</a>
@@ -86,7 +93,10 @@
   <!-- About Section -->
   <section id="about" class="about">
     <div class="container">
-      <h2 class="section-title">About Me</h2>
+      <h2 class="section-title">
+        <span class="title-text">About Me</span>
+        <span class="title-repeat" aria-hidden="true">About Me</span>
+      </h2>
       <div class="about-content">
         <div class="about-text">
           <p>
@@ -117,7 +127,10 @@
   <!-- Experience Section -->
   <section id="experience" class="experience">
     <div class="container">
-      <h2 class="section-title">Experience</h2>
+      <h2 class="section-title">
+        <span class="title-text">Experience</span>
+        <span class="title-repeat" aria-hidden="true">Experience</span>
+      </h2>
       <div class="timeline">
         <div class="timeline-item">
           <div class="timeline-dot"></div>
@@ -142,7 +155,10 @@
   <!-- Projects Section -->
   <section id="projects" class="projects">
     <div class="container">
-      <h2 class="section-title">Featured Projects</h2>
+      <h2 class="section-title">
+        <span class="title-text">Featured Projects</span>
+        <span class="title-repeat" aria-hidden="true">Featured Projects</span>
+      </h2>
       <div class="projects-grid">
         <div class="project-card">
           <div class="project-header">
@@ -158,13 +174,13 @@
             </div>
           </div>
           <p class="project-description">
-            Built a comprehensive application for digital/physical bus pass for AMTS, BRTS and COMBO. Government official project for Ahemdabad Municipal Corporation with integrated payment gateways and security features.
+            Built a comprehensive application for digital and physical bus pass for AMTS, BRTS and COMBO. Government official project for Ahmedabad Municipal Corporation with integrated payment gateways and security features.
           </p>
           <div class="project-features">
             <ul>
-              <li>Online/offline bus pass application</li>
+              <li>Online and offline bus pass application</li>
               <li>Integrated 2 payment gateways (Phi Commerce & CCAvenue)</li>
-              <li>Screen recording prevention and pro guard security</li>
+              <li>Screen recording prevention and ProGuard security</li>
               <li>Vigilance officer app for pass verification</li>
             </ul>
           </div>
@@ -215,7 +231,10 @@
   <!-- Skills Section -->
   <section id="skills" class="skills">
     <div class="container">
-      <h2 class="section-title">Skills & Technologies</h2>
+      <h2 class="section-title">
+        <span class="title-text">Skills & Technologies</span>
+        <span class="title-repeat" aria-hidden="true">Skills & Technologies</span>
+      </h2>
       <div class="skills-grid">
         <div class="skill-category">
           <h3>Frontend</h3>
@@ -262,7 +281,7 @@
             <span class="skill-tag">Firebase</span>
             <span class="skill-tag">GitHub</span>
             <span class="skill-tag">GitLab</span>
-            <span class="skill-tag">Click-up</span>
+            <span class="skill-tag">ClickUp</span>
             <span class="skill-tag">Trello</span>
             <span class="skill-tag">VSCode</span>
           </div>
@@ -283,7 +302,10 @@
   <!-- Contact Section -->
   <section id="contact" class="contact">
     <div class="container">
-      <h2 class="section-title">Get In Touch</h2>
+      <h2 class="section-title">
+        <span class="title-text">Get In Touch</span>
+        <span class="title-repeat" aria-hidden="true">Get In Touch</span>
+      </h2>
       <div class="contact-content">
         <div class="contact-info">
 
