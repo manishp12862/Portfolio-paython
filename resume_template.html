@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Manish Patil - Resume</title>
+  <style>
+    @page {
+      size: A4;
+      margin: 8mm 10mm;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      color: #1e293b;
+      line-height: 1.34;
+      font-size: 8.6pt;
+      background: #ffffff;
+    }
+
+    a {
+      color: #1d4ed8;
+      text-decoration: none;
+    }
+
+    /* Header */
+    .header {
+      border-bottom: 2px solid #2563eb;
+      padding-bottom: 6px;
+      margin-bottom: 7px;
+    }
+
+    .name-title-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 3px;
+    }
+
+    .name {
+      font-size: 19pt;
+      font-weight: 800;
+      letter-spacing: -0.02em;
+      color: #0f172a;
+      line-height: 1;
+    }
+
+    .title {
+      font-size: 10.2pt;
+      font-weight: 700;
+      color: #2563eb;
+      letter-spacing: -0.01em;
+    }
+
+    .contact-bar {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      font-size: 8.2pt;
+      color: #475569;
+    }
+
+    .contact-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 3px;
+    }
+
+    /* Section Styles */
+    .section {
+      margin-bottom: 7px;
+    }
+
+    .section-title {
+      font-size: 9.3pt;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #0f172a;
+      border-bottom: 1px solid #cbd5e1;
+      padding-bottom: 2px;
+      margin-bottom: 4px;
+      display: flex;
+      align-items: center;
+      gap: 5px;
+    }
+
+    .section-title::before {
+      content: "";
+      display: inline-block;
+      width: 3.5px;
+      height: 10px;
+      background: #2563eb;
+      border-radius: 2px;
+    }
+
+    /* Summary */
+    .summary-text {
+      color: #334155;
+      font-size: 8.4pt;
+      line-height: 1.35;
+      text-align: justify;
+    }
+
+    /* Experience */
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1px;
+    }
+
+    .job-title {
+      font-size: 9.2pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .company-name {
+      color: #2563eb;
+      font-weight: 700;
+    }
+
+    .job-meta {
+      font-size: 8.2pt;
+      font-weight: 600;
+      color: #64748b;
+    }
+
+    .job-location {
+      font-style: italic;
+      color: #64748b;
+      margin-bottom: 3px;
+      font-size: 8pt;
+    }
+
+    /* Bullet lists */
+    ul.bullet-list {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    ul.bullet-list li {
+      position: relative;
+      padding-left: 11px;
+      margin-bottom: 2.2px;
+      color: #334155;
+      font-size: 8.35pt;
+      line-height: 1.32;
+    }
+
+    ul.bullet-list li::before {
+      content: "•";
+      position: absolute;
+      left: 1px;
+      color: #2563eb;
+      font-weight: bold;
+      font-size: 8.5pt;
+    }
+
+    /* Projects */
+    .project-item {
+      margin-bottom: 5px;
+    }
+
+    .project-header-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      margin-bottom: 1.5px;
+    }
+
+    .project-name {
+      font-size: 8.9pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .project-tech {
+      font-size: 7.8pt;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+      font-weight: 600;
+      color: #3730a3;
+      background: #eef2ff;
+      padding: 0.5px 5px;
+      border-radius: 3px;
+    }
+
+    /* Skills Table / Grid */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: 125px 1fr;
+      row-gap: 2.5px;
+      font-size: 8.35pt;
+      line-height: 1.3;
+    }
+
+    .skill-cat {
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .skill-items {
+      color: #334155;
+    }
+
+    /* Education */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+
+    .edu-degree {
+      font-size: 8.8pt;
+      font-weight: 700;
+      color: #0f172a;
+    }
+
+    .edu-institution {
+      color: #475569;
+      font-size: 8.35pt;
+    }
+
+    .edu-year {
+      font-size: 8.2pt;
+      font-weight: 600;
+      color: #64748b;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="header">
+    <div class="name-title-row">
+      <h1 class="name">Manish Patil</h1>
+      <div class="title">Full-Stack Mobile & Backend Developer</div>
+    </div>
+    <div class="contact-bar">
+      <span class="contact-item">📍 Ahmedabad, Gujarat, India</span>
+      <span class="contact-item">📞 +91 7069414832</span>
+      <span class="contact-item">✉️ <a href="mailto:manishpatil3051@gmail.com">manishpatil3051@gmail.com</a></span>
+      <span class="contact-item">🔗 <a href="https://linkedin.com/in/manish-patil-949785207">linkedin.com/in/manish-patil-949785207</a></span>
+      <span class="contact-item">💻 <a href="https://github.com/manishp12862">github.com/manishp12862</a></span>
+    </div>
+  </header>
+
+  <!-- Summary -->
+  <section class="section">
+    <div class="section-title">Professional Summary</div>
+    <p class="summary-text">
+      <strong>Full-Stack Mobile & Backend Developer</strong> with 3+ years of experience engineering high-performance cross-platform mobile applications (React Native, TypeScript) and robust backend microservices (Node.js, Express.js, MongoDB). Proven record across 30+ production deliveries including government transit systems, multi-role advisory platforms, and enterprise networking networks. Specialized in secure REST API design, payment gateways (Razorpay, Phi Commerce, CCAvenue), Aadhaar KYC verification, and full App Store / Play Store release cycles.
+    </p>
+  </section>
+
+  <!-- Technical Skills -->
+  <section class="section">
+    <div class="section-title">Technical Skills</div>
+    <div class="skills-grid">
+      <div class="skill-cat">Backend & DB:</div>
+      <div class="skill-items"><strong>Node.js</strong>, <strong>Express.js</strong>, <strong>MongoDB</strong>, <strong>Mongoose ODM</strong>, RESTful API Design, JWT Authentication, RBAC, Webhooks, Joi/Zod</div>
+
+      <div class="skill-cat">Mobile Engineering:</div>
+      <div class="skill-items"><strong>React Native</strong>, <strong>TypeScript</strong>, Android Studio, Xcode, Kotlin, Native Modules, Offline Sync, ProGuard Security</div>
+
+      <div class="skill-cat">Frontend & Web:</div>
+      <div class="skill-items">React.js, JavaScript (ES6+), HTML5, CSS3, Responsive Web Architecture, Three.js & WebGL</div>
+
+      <div class="skill-cat">Cloud, Tools & Deploy:</div>
+      <div class="skill-items">Google Play Console, Apple App Store Connect, Firebase (FCM & Analytics), Postman, Swagger, Git, GitHub, GitLab</div>
+
+      <div class="skill-cat">Methodologies:</div>
+      <div class="skill-items">Agile, Scrum, Sprint Planning, Microservices Architecture, Code Reviews, Secure Software Development</div>
+    </div>
+  </section>
+
+  <!-- Experience -->
+  <section class="section">
+    <div class="section-title">Work Experience</div>
+    <div class="job-header">
+      <div class="job-title">Associate Developer — Mobile & Backend Systems | <span class="company-name">Techreale</span></div>
+      <div class="job-meta">2023 — Present</div>
+    </div>
+    <div class="job-location">Onsite • Ahmedabad, India</div>
+    <ul class="bullet-list">
+      <li><strong>Backend Architecture & RESTful APIs:</strong> Architected, built, and optimized high-throughput REST APIs using <strong>Node.js</strong> and <strong>Express.js</strong>; modeled scalable <strong>MongoDB</strong> schemas with <strong>Mongoose ODM</strong>, JWT sessions, and role-based access control.</li>
+      <li><strong>SeniorSage ("Start Again") Platform:</strong> Engineered backend microservices for Helper/Expert onboarding, conversational chat registration, real-time <strong>Aadhaar KYC</strong> verification, and <strong>Razorpay</strong> payment gateway reconciliation.</li>
+      <li><strong>Cross-Platform Mobile Engineering:</strong> Built full-featured iOS and Android apps with <strong>React Native</strong> and <strong>TypeScript</strong>, achieving consistent 60fps animations, robust offline caching, and native bridge configurations.</li>
+      <li><strong>Payment Gateways & Integrations:</strong> Implemented end-to-end payment processing across <strong>Razorpay</strong>, <strong>Phi Commerce</strong>, and <strong>CCAvenue</strong> with checksum verification, webhook reconciliation, and automated invoicing.</li>
+      <li><strong>Security Hardening & Store Deployment:</strong> Managed complete release pipelines for Google Play Store and Apple App Store; enforced screen recording/screenshot prevention and ProGuard code obfuscation for enterprise and municipal security standards.</li>
+      <li><strong>Cloud Messaging & Telemetry:</strong> Integrated <strong>Firebase Cloud Messaging (FCM)</strong> for personalized push alerts, crash analytics, and telemetry.</li>
+    </ul>
+  </section>
+
+  <!-- Key Projects -->
+  <section class="section">
+    <div class="section-title">Key Production Projects</div>
+
+    <!-- Project 1: Start Again -->
+    <div class="project-item">
+      <div class="project-header-row">
+        <div class="project-name">Start Again (SeniorSage) — Multi-Role Backend API Engine</div>
+        <div class="project-tech">Node.js • Express.js • MongoDB • Razorpay • Aadhaar KYC</div>
+      </div>
+      <ul class="bullet-list">
+        <li>Designed full backend platform facilitating multi-role interactions between Helpers and Experts with secure JWT/OTP authentication.</li>
+        <li>Integrated real-time government <strong>Aadhaar OTP KYC</strong> verification and document validation pipeline for certified expert registration.</li>
+        <li>Developed state-driven conversational chat onboarding API dynamically serving question sequences and validating multi-step answers.</li>
+        <li>Implemented <strong>Razorpay Payment Gateway</strong> handling registration fees, expert consultation bookings, coupons, and webhook callbacks.</li>
+        <li>Engineered real-time push notification pipelines (FCM) with unread counters, coupled with user rating & review aggregation.</li>
+      </ul>
+    </div>
+
+    <!-- Project 2: i-Pass -->
+    <div class="project-item">
+      <div class="project-header-row">
+        <div class="project-name">i-Pass: AMTS & BRTS Digital Transit Pass System (Govt. Project)</div>
+        <div class="project-tech">React Native • TypeScript • Node.js APIs • Phi Commerce • CCAvenue</div>
+      </div>
+      <ul class="bullet-list">
+        <li>Official transit app built for <strong>Ahmedabad Municipal Corporation (AMC)</strong>, enabling online and offline bus pass issuance for thousands of commuters.</li>
+        <li>Integrated dual payment gateways (Phi Commerce & CCAvenue) with automated transaction callbacks and server validation.</li>
+        <li>Hardened device security with screenshot blocking, screen recording prevention, and ProGuard obfuscation; built companion vigilance officer validation app.</li>
+      </ul>
+    </div>
+
+    <!-- Project 3: HiqLynks -->
+    <div class="project-item">
+      <div class="project-header-row">
+        <div class="project-name">HiqLynks — Professional Networking & Community Platform</div>
+        <div class="project-tech">React Native • Node.js • Express.js • MongoDB • Realtime Chat</div>
+      </div>
+      <ul class="bullet-list">
+        <li>Engineered enterprise social networking platform connecting organizations and college students with threads, polls, events, and mentorship tracking.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- Education -->
+  <section class="section" style="margin-bottom: 0;">
+    <div class="section-title">Education</div>
+    <div class="edu-item">
+      <div>
+        <span class="edu-degree">Master of Computer Applications (MCA)</span> — <span class="edu-institution">Gujarat Technological University (GTU)</span>
+        <span style="color: #2563eb; font-weight: 600; font-size: 8.2pt;">(CGPA: 8.10 / 10)</span>
+      </div>
+      <div class="edu-year">2021 — 2023</div>
+    </div>
+  </section>
+
+</body>
+</html>
